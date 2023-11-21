@@ -1,6 +1,10 @@
 package _Web_Crawler
 
-import "github.com/google/uuid"
+import (
+	"github.com/google/uuid"
+	"os"
+	"strconv"
+)
 
 type FetchArgs struct {
 	nodeId uuid.UUID
@@ -19,4 +23,10 @@ type SubmitArgs struct {
 
 type SubmitReply struct {
 	msg string
+}
+
+func coordinatorSock() string {
+	s := "/var/tmp/824-mr-"
+	s += strconv.Itoa(os.Getuid())
+	return s
 }
